@@ -27,7 +27,9 @@ export default function Home() {
                   <div className="detail">
                     <h3>{prod.name}</h3>
                     <h4>{prod.description}</h4>
+                    <NavLink to={`/detail/${prod.id}`}>
                     <button className="btn">Buy now</button>
+                    </NavLink>
                   </div>
                 </div>
               </div>
@@ -64,7 +66,9 @@ export default function Home() {
                   </div>
                   <div className="price">
                     <div className="col-6 buy">
-                      <NavLink className="btn">Buy now</NavLink>
+                    <NavLink to={`/detail/${proD.id}`}>
+                    <button className="btn">Buy now</button>
+                    </NavLink>
                     </div>
                     <div className="col-6 cost">
                       <p>{proD.price}</p>

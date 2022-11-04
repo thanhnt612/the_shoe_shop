@@ -34,10 +34,17 @@ const svReducer = createSlice({
       let arrProduct = action.payload;
       state.arrProduct = arrProduct;
     },
+    getDataProductDetail : (state,action) => {
+      //B1: Lấy dữ liệu từ payload
+      let productDetail = action.payload;
+      //B2: cập nhật state
+      state.productDetail = productDetail;
+  }
   },
 });
 
-export const { getDataProductAction, } = svReducer.actions;
+export const { getDataProductAction, getDataProductDetail } = svReducer.actions;
+
 export default svReducer.reducer;
 
 /*--------Async Action---------*/
@@ -48,3 +55,18 @@ export const getProductApi = () => {
     dispatch(action);
   };
 };
+
+
+/* --------- Product Detail -------------- */
+export const getProductDetailApi = (id) => {
+  return async dispatch => {
+      //Gọi api
+      try {
+          let result = await http.get('/api/Product/getbyid?id='+id);
+          const action = getDataProductDetail(result.data.content);
+          dispatch(action);
+      } catch (err) {
+
+      }
+  }
+}

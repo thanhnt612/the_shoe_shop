@@ -11,6 +11,7 @@ import Cart from "./pages/Cart/Cart";
 import Profile from "./pages/Profile/Profile";
 import Detail from "./pages/Detail/Detail";
 import "./index.scss";
+import Search from "./pages/Search/Search";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
@@ -18,6 +19,7 @@ root.render(
       <Routes>
         <Route path="" element={<HomeTemplates />}>
           <Route index element={<Home />}></Route>
+          <Route path="search" element={<Search/>}></Route>
           <Route path="login" element={<Login />}></Route>
           <Route path="register" element={<Register />}></Route>
           <Route path="cart" element={<Cart />}></Route>
