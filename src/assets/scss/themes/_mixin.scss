@@ -1,0 +1,62 @@
+@mixin text($fz, $fw, $c) {
+    font-size: $fz;
+    font-weight: $fw;
+    color: $c;
+}
+
+@mixin button($fz, $fw, $c, $bg, $pd) {
+    @include text($fz, $fw, $c);
+    background: $bg;
+    padding: $pd;
+    cursor: pointer;
+}
+
+@mixin footer1($fz, $fw, $c) {
+    font-size: $fz;
+    font-weight: $fw;
+    color: $c;
+}
+
+@mixin footer2($fz, $fw, $c) {
+    font-size: $fz;
+    font-weight: $fw;
+    color: $c;
+}
+
+@mixin responsive ($breakpoint) {
+    @if $breakpoint == "xxxs" {
+        @media (min-width: 381px) {
+            @content
+        }
+    };
+    @if $breakpoint == "xxs" {
+        @media (min-width: 414px) {
+            @content
+        }
+    };
+    @if $breakpoint == "xs" {
+        @media (min-width: 576px) {
+            @content
+        }
+    };
+    @if $breakpoint == "sm" {
+        @media (min-width: 768px) {
+            @content
+        }
+    };
+    @if $breakpoint == "md" {
+        @media (min-width: 992px) {
+            @content
+        }
+    };
+    @if $breakpoint == "lg" {
+        @media (min-width: 1200px) {
+            @content
+        }
+    };
+    @if $breakpoint == "xl" {
+        @media (min-width: 1400px) {
+            @content
+        }
+    }
+}

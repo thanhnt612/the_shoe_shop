@@ -1,1 +1,212 @@
+.home-page {
+  .carousel {
+    .container {
+      .content-left {
+        text-align: center;
 
+        img {
+          width: 100%;
+        }
+      }
+
+      .content-right {
+        z-index: 10;
+        position: relative;
+
+        .detail {
+          position: absolute;
+          right: 20px;
+          top: 30%;
+
+          h3 {
+            font-size: $text-base;
+            font-weight: $text-light;
+
+            @include responsive("xxxs") {
+              font-size: $text-xl;
+            }
+
+            @include responsive("sm") {
+              font-size: $text-3xl;
+            }
+
+            @include responsive("lg") {
+              font-size: $text-4xl;
+            }
+          }
+
+          h4 {
+            font-size: $text-xs - 3px;
+            font-weight: $text-light;
+            margin-bottom: 10px;
+
+            @include responsive("sm") {
+              font-size: $text-xl;
+            }
+
+            @include responsive("lg") {
+              font-size: $text-2xl;
+            }
+          }
+
+          .btn {
+            @include button(
+              $text-base,
+              $text-light,
+              $text-c1-light,
+              $bg-c1-button-main,
+              5px 10px
+            );
+
+            @include responsive("xs") {
+              @include button(
+                $text-2xl,
+                $text-light,
+                $text-c1-light,
+                $bg-c1-button-main,
+                10px 30px
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .slide {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    padding: 0 20px;
+
+    .slider-left,
+    .slide-right {
+      z-index: 100;
+      img {
+        width: 30px;
+        height: 30px;
+        @include responsive("xs") {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+  .product {
+    .container {
+      .tittle {
+        background: linear-gradient(180deg, #f21299 0%, #1b02b5 100%);
+        color: $text-c1-light;
+        font-size: $text-4xl;
+        font-weight: $text-regular;
+        text-align: left;
+        padding: 5px;
+        @media only screen and (max-width: 768px) {
+          font-size: $text-2xl;
+        }
+      }
+      .row {
+        display: flex;
+        .col-lg-4 {
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          .item {
+            background-color: $bg-c1-product;
+            padding: 20px;
+            flex: 1 1 auto;
+
+            .thumbnail {
+              text-align: center;
+              position: relative;
+              .heart {
+                color: #fb0b0b;
+                font-size: $text-4xl;
+                font-weight: $text-regular;
+                text-align: right;
+                i {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  top: 0;
+                  bottom: 0;
+                }
+              }
+              img {
+                width: 100%;
+                object-fit: scale-down;
+              }
+            }
+          }
+
+          .detail {
+            h3 {
+              font-weight: $text-light;
+              font-size: $text-2xl1;
+              color: $text-c1-dark;
+
+              @media only screen and (max-width: 576px) {
+                font-size: $text-xl;
+              }
+            }
+
+            p {
+              font-weight: $text-light;
+              font-size: $text-xl;
+              color: $text-c1-descProduct;
+
+              @media only screen and (max-width: 576px) {
+                font-size: $text-base;
+              }
+            }
+          }
+
+          .price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $bg-c1-price;
+
+            .buy {
+              .btn {
+                @include button(
+                  $text-xl,
+                  $text-regular,
+                  $text-c1-dark,
+                  $bg-c1-button,
+                  5px 20px
+                );
+
+                @include responsive("md") {
+                  @include button(
+                    $text-2xl1,
+                    $text-regular,
+                    $text-c1-dark,
+                    $bg-c1-button,
+                    10px 20px
+                  );
+                }
+              }
+            }
+
+            .cost {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              p {
+                margin-bottom: 0;
+                @include text($text-2xl1, $text-semiBold, $text-c1-dark);
+
+                @media only screen and (max-width: 992px) {
+                  @include text($text-base, $text-semiBold, $text-c1-dark);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

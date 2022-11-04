@@ -3,22 +3,26 @@ import { NavLink } from "react-router-dom";
 
 export default function HeaderHome() {
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header-left">
-          <NavLink to="/home">
-            <img src="../img/image 3.png" alt="logo" />
-          </NavLink>
+      <header className="header">
+        <div className="container">
+          <div className="header-left">
+            <NavLink to="/home">
+              <img src="../img/image 3.png" alt="logo" />
+            </NavLink>
+          </div>
+          <div className="header-right">
+            <div>
+              <i class="text-light me-2 fa-solid fa-search"></i>
+              <span>Search</span>
+            </div>
+            <NavLink>
+              <img src="../img/image 7.png" alt="Cart" />
+            </NavLink>
+            <span>(1)</span>
+            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/register">Register</NavLink>
+          </div>
         </div>
-        <div className="header-right">
-          <NavLink>
-            <img src="../img/image 7.png" alt="Cart" />
-          </NavLink>
-          <span>(1)</span>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/register">Register</NavLink>
-        </div>
-      </div>
-    </header>
+      </header>
   );
 }
