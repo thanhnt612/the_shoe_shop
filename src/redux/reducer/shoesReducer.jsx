@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { http } from "../../util/config";
-
+import _ from "lodash";
 const initialState = {
   arrProductDefault: [
     {
@@ -24,6 +24,7 @@ const initialState = {
   ],
   arrProduct: [],
   productDetail: {},
+  searchProduct: [],
 };
 
 const svReducer = createSlice({
@@ -34,16 +35,33 @@ const svReducer = createSlice({
       let arrProduct = action.payload;
       state.arrProduct = arrProduct;
     },
-    getDataProductDetail : (state,action) => {
+    getDataProductDetail: (state, action) => {
       //B1: Lấy dữ liệu từ payload
       let productDetail = action.payload;
       //B2: cập nhật state
       state.productDetail = productDetail;
-  }
+    },
+    getSearchProduct: (state, action) => {
+      let searchProduct = action.payload;
+      state.searchProduct = searchProduct;
+      console.log(state);
+    },
+    ascProduct: (state, action) => {
+      state.searchProduct =  _.orderBy(state.searchProduct, ["name"], ["asc"]);
+    },
+    descProduct: (state, action) => {
+      state.searchProduct =  _.orderBy(state.searchProduct, ["name"], ["desc"]);
+    },
   },
 });
 
-export const { getDataProductAction, getDataProductDetail } = svReducer.actions;
+export const {
+  getDataProductAction,
+  getDataProductDetail,
+  getSearchProduct,
+  ascProduct,
+  descProduct,
+} = svReducer.actions;
 
 export default svReducer.reducer;
 
@@ -56,17 +74,27 @@ export const getProductApi = () => {
   };
 };
 
-
 /* --------- Product Detail -------------- */
 export const getProductDetailApi = (id) => {
-  return async dispatch => {
-      //Gọi api
-      try {
-          let result = await http.get('/api/Product/getbyid?id='+id);
-          const action = getDataProductDetail(result.data.content);
-          dispatch(action);
-      } catch (err) {
-
-      }
-  }
-}
+  return async (dispatch) => {
+    //Gọi api
+    try {
+      let result = await http.get("/api/Product/getbyid?id=" + id);
+      const action = getDataProductDetail(result.data.content);
+      dispatch(action);
+    } catch (err) {}
+  };
+};
+/* --------- Search Product  -------------- */
+export const getSearchProductApi = (keyword) => {
+  return async (dispatch) => {
+    try {
+      let result = await http.get(`/api/Product?keyword=${keyword}`);
+      console.log(result);
+      const action = getSearchProduct(result.data.content);
+      dispatch(action);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};

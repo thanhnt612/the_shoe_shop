@@ -3,7 +3,8 @@ $text-c1-dark: #000;
 $text-c1-light: #fff;
 $text-c1-extraLight: #f6f6f6;
 $text-c1-descProduct: #cbc9c9;
-$text-c1-productDetail : rgb(77, 230, 77);
+$text-c1-productDetail: rgb(77, 230, 77);
+$text-c1-grey: rgba(0, 0, 0, 0.6);
 
 $text-xs: 14px;
 $text-base: 16px;
@@ -25,16 +26,17 @@ $bg-c1-header: #000;
 $bg-c1-light: #f5f9fe;
 $bg-c1-dark: #000;
 $bg-c1-button-main: #f8b653;
+$bg-heart:#fb0b0b;
 $bg-c1-button: #9de167;
 $bg-c1-product: #f8f8f8;
 $bg-c1-price: #dedddc;
 $bg-c1-register: #ae18e2;
-$bg-c1-button-size:rgb(207, 200, 200);
-$bg-hover-button-size : grey;
-$bg-c1-button-quantity:rgb(145, 145, 214);
-$bg-hover-button-quantity:rgb(115, 115, 223);
-$bg-c1-button-buy:rgb(228, 165, 72);
+$bg-c1-button-size: rgb(207, 200, 200);
+$bg-hover-button-size: grey;
+$bg-c1-button-quantity: rgb(145, 145, 214);
+$bg-hover-button-quantity: rgb(115, 115, 223);
+$bg-c1-button-buy: rgb(228, 165, 72);
 $bg-hover-button-buy: rgb(206, 113, 51);
-$bg-c1-addToCard-button:#d017ee 0%,
-#3e20f8 51%,
-#d017ee 100%;
+$bg-c1-addToCard-button: #d017ee 0%, #3e20f8 51%, #d017ee 100%;
+$bg-button-search: #6200ee;
+$bg-title: linear-gradient(180deg, #f21299 0%, #1b02b5 100%);

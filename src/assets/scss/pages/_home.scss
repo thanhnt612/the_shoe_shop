@@ -97,7 +97,7 @@
   .product {
     .container {
       .tittle {
-        background: linear-gradient(180deg, #f21299 0%, #1b02b5 100%);
+        background: $bg-title;
         color: $text-c1-light;
         font-size: $text-4xl;
         font-weight: $text-regular;
@@ -117,12 +117,11 @@
             background-color: $bg-c1-product;
             padding: 20px;
             flex: 1 1 auto;
-
             .thumbnail {
               text-align: center;
               position: relative;
               .heart {
-                color: #fb0b0b;
+                color: $bg-heart;
                 font-size: $text-4xl;
                 font-weight: $text-regular;
                 text-align: right;

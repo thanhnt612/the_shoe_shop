@@ -1,0 +1,156 @@
+.search-page {
+  font-family: "Roboto", sans-serif;
+  padding-top: 30px;
+  .container {
+    h4 {
+      @include text($text-base, $text-semiBold, $text-c1-grey);
+    }
+    .form-group {
+      padding-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      input {
+        width: 40%;
+        margin-right: 30px;
+        font-size: $text-base;
+        padding: 16px 12px 14px 14px;
+        background: rgba(33, 33, 33, 0.08);
+        border-radius: 4px 4px 0px 0px;
+      }
+      .btn {
+        @include button(
+          $text-xs,
+          $text-regular,
+          $text-c1-light,
+          $bg-button-search,
+          15px 30px
+        );
+        border-radius: 50px;
+      }
+    }
+    .result {
+      .tittle {
+        background: $bg-title;
+        padding: 12px;
+        margin-bottom: 10px;
+        h3 {
+          @include text($text-4xl, $text-regular, $text-c1-light);
+        }
+      }
+      .list {
+        h4 {
+          @extend h4;
+        }
+        .sort {
+          display: flex;
+          flex-direction: column;
+          button {
+            font-size: $text-base;
+            padding: 16px 12px 14px 14px;
+            background: rgba(33, 33, 33, 0.08);
+            border-radius: 4px 4px 0px 0px;
+            border: none;
+          }
+        }
+        .row {
+          display: flex;
+          .col-lg-4 {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            .item {
+              background-color: $bg-c1-product;
+              padding: 20px;
+              flex: 1 1 auto;
+              .thumbnail {
+                text-align: center;
+                position: relative;
+                .heart {
+                  color: $bg-heart;
+                  font-size: $text-4xl;
+                  font-weight: $text-regular;
+                  text-align: right;
+                  i {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                  }
+                }
+                img {
+                  width: 100%;
+                  object-fit: scale-down;
+                }
+              }
+            }
+
+            .detail {
+              h3 {
+                font-weight: $text-light;
+                font-size: $text-2xl1;
+                color: $text-c1-dark;
+
+                @media only screen and (max-width: 576px) {
+                  font-size: $text-xl;
+                }
+              }
+
+              p {
+                font-weight: $text-light;
+                font-size: $text-xl;
+                color: $text-c1-descProduct;
+
+                @media only screen and (max-width: 576px) {
+                  font-size: $text-base;
+                }
+              }
+            }
+
+            .price {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: $bg-c1-price;
+              .buy {
+                .btn {
+                  @include button(
+                    $text-xl,
+                    $text-regular,
+                    $text-c1-dark,
+                    $bg-c1-button-main,
+                    5px 20px
+                  );
+
+                  @include responsive("md") {
+                    @include button(
+                      $text-2xl1,
+                      $text-regular,
+                      $text-c1-dark,
+                      $bg-c1-button-main,
+                      10px 20px
+                    );
+                  }
+                }
+              }
+
+              .cost {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                p {
+                  margin-bottom: 0;
+                  @include text($text-2xl1, $text-semiBold, $text-c1-dark);
+
+                  @media only screen and (max-width: 992px) {
+                    @include text($text-base, $text-semiBold, $text-c1-dark);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

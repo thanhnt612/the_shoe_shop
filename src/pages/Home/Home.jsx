@@ -71,7 +71,7 @@ export default function Home() {
                     </NavLink>
                     </div>
                     <div className="col-6 cost">
-                      <p>{proD.price}</p>
+                      <p>${proD.price}</p>
                     </div>
                   </div>
                 </div>
