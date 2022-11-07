@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useSearchParams } from "react-router-dom";
 import {
-  ascProduct,
-  descProduct,
   getSearchProductApi,
+  sortProduct,
 } from "../../redux/reducer/shoesReducer";
 
 export default function Search() {
@@ -12,21 +11,17 @@ export default function Search() {
   const searchProduct = useSelector(
     (state) => state.shoesReducer.searchProduct
   );
-  console.log(searchProduct);
-  // const [arrProduct, setArrProduct] = useState([]);
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
   const handleChange = (e) => {
     const { value } = e.target;
     keywordRef.current = value;
   };
+  //Lấy giá trị để set tăng giảm Product
   const handleOnChange = (e) => {
     const { value } = e.target;
-    if (value === "ascending") {
-      dispatch(ascProduct(searchProduct));
-    } else {
-      dispatch(descProduct(searchProduct));
-    }
+    const action = sortProduct(value);
+    dispatch(action);
   };
   useEffect(() => {
     const keyword = searchParams.get("keyword");
@@ -34,7 +29,6 @@ export default function Search() {
     if (keyword) {
       const action = getSearchProductApi(keyword);
       dispatch(action);
-      // setArrProduct(search);
     }
   }, [keywordRef.current]);
   const handleSubmit = (e) => {
