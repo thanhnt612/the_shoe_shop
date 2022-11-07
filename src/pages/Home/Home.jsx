@@ -19,7 +19,7 @@ export default function Home() {
         <div className="container">
           {arrProductDefault.map((prod, index) => {
             return (
-              <div className="row">
+              <div className="row" key={index}>
                 <div className="content-left col-7">
                   <img src={prod.image} alt="content" />
                 </div>
@@ -49,14 +49,15 @@ export default function Home() {
           <div className="row">
             {arrProduct.map((proD, index) => {
               return (
-                <div className="col-lg-4 col-md-6">
+                <div className="col-lg-4 col-md-6" key={index}>
                   <div className="item">
                     <div className="thumbnail">
                       <div className="heart">
-                        <i class="fa-regular fa-heart"></i>
+                        <i className="fa-regular fa-heart" />
+
                       </div>
                       <a>
-                        <img src={proD.image} alt />
+                        <img src={proD.image} alt='...' />
                       </a>
                     </div>
                     <div className="detail">

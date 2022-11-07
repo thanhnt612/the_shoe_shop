@@ -1,0 +1,34 @@
+.container {
+  h2 {
+
+  }
+  .row {
+    .col-6 {
+      .form-group {
+        p {
+         margin-bottom: 7px;
+         font-size: $text-2xl;
+         font-weight: $text-regular;
+        }
+        span {
+          margin-bottom: 7px;
+         font-size: $text-2xl;
+         font-weight: $text-regular;
+        }
+        input {
+
+        }
+        button {
+          margin-top: 20px;
+        }
+      }
+      .radioGroup {
+        padding: 10px 0px;
+        margin-top: 20px;
+        .radioButton {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
