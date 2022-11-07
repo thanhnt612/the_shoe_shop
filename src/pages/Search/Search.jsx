@@ -20,6 +20,14 @@ export default function Search() {
     const { value } = e.target;
     keywordRef.current = value;
   };
+  const handleOnChange = (e) => {
+    const { value } = e.target;
+    if (value === "ascending") {
+      dispatch(ascProduct(searchProduct));
+    } else {
+      dispatch(descProduct(searchProduct));
+    }
+  };
   useEffect(() => {
     const keyword = searchParams.get("keyword");
     console.log(keyword);
@@ -54,24 +62,15 @@ export default function Search() {
             <h3>Search result</h3>
           </div>
           <div className="list">
-            <h4>Price</h4>
+            <h4>
+              Price <i class="fa-solid fa-arrow-down-up-across-line"></i>
+            </h4>
+
             <div className="sort col-2">
-              <button
-                className="asc mb-3"
-                onClick={() => {
-                  dispatch(ascProduct(searchProduct));
-                }}
-              >
-                Ascending <i class="fa-solid fa-arrow-down"></i>
-              </button>
-              <button
-                className="desc"
-                onClick={() => {
-                  dispatch(descProduct(searchProduct));
-                }}
-              >
-                Descending <i class="fa-solid fa-arrow-up"></i>
-              </button>
+              <select onChange={handleOnChange}>
+                <option value="ascending">Ascending </option>
+                <option value="descending">Descending</option>
+              </select>
             </div>
             <div className="row">
               {searchProduct.map((proD, index) => {

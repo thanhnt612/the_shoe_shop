@@ -47,10 +47,10 @@ const svReducer = createSlice({
       console.log(state);
     },
     ascProduct: (state, action) => {
-      state.searchProduct =  _.orderBy(state.searchProduct, ["name"], ["asc"]);
+      state.searchProduct =  _.orderBy(state.searchProduct, ["price"], ["asc"]);
     },
     descProduct: (state, action) => {
-      state.searchProduct =  _.orderBy(state.searchProduct, ["name"], ["desc"]);
+      state.searchProduct =  _.orderBy(state.searchProduct, ["price"], ["desc"]);
     },
   },
 });
@@ -96,5 +96,10 @@ export const getSearchProductApi = (keyword) => {
     } catch (err) {
       console.log(err);
     }
+  };
+};
+export const sortProduct = () => {
+  return async (dispatch) => {
+          
   };
 };
