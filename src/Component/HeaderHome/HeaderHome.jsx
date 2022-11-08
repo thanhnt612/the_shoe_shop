@@ -1,7 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 export default function HeaderHome() {
+  const {userLogin} = useSelector(state => state.userReducer)
+  const renderLogin = () => {
+    console.log(userLogin)
+    if(userLogin.email) {
+      return <NavLink to={'/profile'}>Hello ! {userLogin.name}</NavLink>
+    }
+    return <NavLink to="/login">Login</NavLink>
+  }
+
+
   return (
     <header className="header">
       <div className="container">
@@ -23,7 +34,7 @@ export default function HeaderHome() {
             <img src="../img/image 7.png" alt="Cart" />
           </NavLink>
           <span>(1)</span>
-          <NavLink to="/login">Login</NavLink>
+          {renderLogin()}
           <NavLink to="/register">Register</NavLink>
         </div>
       </div>
