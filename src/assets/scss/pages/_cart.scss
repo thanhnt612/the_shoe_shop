@@ -32,6 +32,12 @@
           .btnQuantity {
             background-color: $bg-c1-loginButton;
             padding: 2px 10px;
+            &:hover {
+                &:hover {
+                    background-color: $bg-hover-button-cart;
+                    transition: 0.6s;
+                  }
+            }
           }
           .btnGroup {
             width: 105%;
