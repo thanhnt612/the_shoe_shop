@@ -1,0 +1,61 @@
+.cart {
+  text-align: right;
+  h3 {
+    text-align: left;
+  }
+  .table {
+    thead {
+      background-color: $bg-c1-cart;
+      tr {
+        text-align: center;
+
+        th {
+          input[type="checkbox"] {
+            
+          }
+         
+        }
+      }
+    }
+    tbody {
+      tr {
+        text-align: center;
+
+        td {
+          img {
+          }
+          span {
+            margin: 0 10px;
+            background-color: $bg-c1-cart;
+            padding: 0px 30px;
+          }
+          .btnQuantity {
+            background-color: $bg-c1-loginButton;
+            padding: 2px 10px;
+          }
+          .btnGroup {
+            width: 105%;
+            .btnEdit {
+              background-color: $bg-c1-loginButton;
+              margin-right: 10px;
+              padding: 5px 25px;
+              &:hover {
+                background-color: $bg-hover-button-cart;
+                transition: 0.6s;
+              }
+            }
+            .btnDelete {
+              margin-left: 10px;
+              padding: 5px 25px;
+              transition: 0.6s;
+            }
+          }
+        }
+      }
+    }
+  }
+  .btnSubmitCart {
+    text-align: right;
+    padding: 5px 25px;
+  }
+}
