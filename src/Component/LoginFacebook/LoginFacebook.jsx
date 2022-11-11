@@ -1,16 +1,26 @@
-import React from 'react'
-import FacebookLogin from 'react-facebook-login'
+import React from "react";
+import FacebookLogin from "react-facebook-login";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginFacebookApi } from "../../redux/reducer/userReducer";
 
 export default function LoginFacebook() {
-    const responseFacebook = (response) => {
-        console.log(response);
-      }
-    return (
-        <div className='loginFB'> <FacebookLogin
-        appId="1256871085168128"
-        autoLoad={true}
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+  const responseFacebook = async (response) => {
+    console.log(response);
+    const action = loginFacebookApi(response.accessToken);
+    await dispatch(action);
+    navigate("/profile");
+  };
+  return (
+    <div className="loginFB">
+      <FacebookLogin
+        appId="518284166485041"
+        // autoLoad={true}
         fields="name,email,picture"
-        // onClick={componentClicked}
-        callback={responseFacebook} /></div>
-    )
+        callback={responseFacebook}
+      />
+    </div>
+  );
 }

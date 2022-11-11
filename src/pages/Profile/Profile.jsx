@@ -1,8 +1,8 @@
 import { useFormik } from "formik";
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
-
+import { getProfileApi } from "../../redux/reducer/userReducer";
 export default function Profile() {
   const frm = useFormik({
     initialValues: {
@@ -10,29 +10,40 @@ export default function Profile() {
       number: "",
       name: "",
       password: "",
+      gender: "",
     },
     validationSchema: yup.object().shape({
-      name: yup
-        .string()
-        .max(25, "Không vượt quá 25 ký tự")
-        .required("Xin mời nhập vào tên !!!"),
+      name: yup.string().required("Xin mời nhập vào tên !!!"),
       email: yup
         .string()
         .email("Email không đúng định dạng")
         .required("Xin mời nhập vào email !!!"),
       number: yup
         .number()
-        .moreThan(98765432, "Số điện thoại bị lỗi")
+        .typeError("Xin hãy nhập vào ký tự là số")
         .required("Xin mời nhập vào số điện thoại !!!"),
       password: yup.string().required("Xin mời nhập mật khẩu !!!"),
     }),
     onSubmit: (values) => {
+      if (values.gender === "true") {
+        values.gender = true;
+      } else {
+        values.gender = false;
+      }
       console.log(values);
     },
   });
+  const {userProfile} = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    //Gọi api get profile
+    const action = getProfileApi();
+    dispatch(action);
+    //
+  },[]);
   return (
-    <div className="profile-page container">
-      <div className="title">
+    <div className="profile-page">
+      <div className="my-3 col-6 title">
         <h3>Profile</h3>
       </div>
       <div className="row">
@@ -116,20 +127,19 @@ export default function Profile() {
                       <input
                         className="size"
                         type="radio"
-                        id="male"
                         name="gender"
-                        checked
-                        value="true"
+                        value={true}
+                        onChange={frm.handleChange}
                       />
-                      <label for="male">Male</label>
+                      <label for="">Male</label>
                       <input
                         className="size"
                         type="radio"
-                        id="female"
                         name="gender"
-                        value="false"
+                        value={false}
+                        onChange={frm.handleChange}
                       />
-                      <label for="female">Female</label>
+                      <label for="">Female</label>
                     </div>
                   </div>
                   <div className="text-end">
@@ -142,6 +152,57 @@ export default function Profile() {
             </div>
           </form>
         </div>
+      </div>
+      <div className="order">
+        <div className="title-order d-flex my-3">
+          <h3>Order History</h3>
+          {/* <h3 className="text-dark ms-4">Favorite</h3> */}
+        </div>
+        <div className="buying-history my-3">
+          <span>+ Order have been placed on 10 - 11 - 2022</span>
+        </div>
+        <table className="table text-center border">
+          <thead>
+            <tr>
+              <td>id</td>
+              <td>img</td>
+              <td>name</td>
+              <td>price</td>
+              <td>quantity</td>
+              <td>total</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <img
+                  src="https://picsum.photos/300/300"
+                  alt="..."
+                  style={{ width: "50px", height: "50px" }}
+                />
+              </td>
+              <td>Product 1</td>
+              <td>1000</td>
+              <td>1</td>
+              <td>1000</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <img
+                  src="https://picsum.photos/200/200"
+                  alt="..."
+                  style={{ width: "50px", height: "50px" }}
+                />
+              </td>
+              <td>Product 2</td>
+              <td>1000</td>
+              <td>1</td>
+              <td>1000</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
