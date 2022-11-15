@@ -6,13 +6,13 @@ import { ACCESSTOKEN, settings, USER_LOGIN } from "../../util/config";
 export default function HeaderHome() {
   const { userProfile } = useSelector((state) => state.userReducer);
   const renderLogin = () => {
-<<<<<<< HEAD
-    console.log(userLogin)
-    if(userLogin.email) {
-      console.log(userLogin)
-      return <NavLink to={'/profile'}>Hello ! {userLogin.email}</NavLink>
+// <<<<<<< HEAD
+//     console.log(userLogin)
+//     if(userLogin.email) {
+//       console.log(userLogin)
+//       return <NavLink to={'/profile'}>Hello ! {userLogin.email}</NavLink>
       
-=======
+// =======
     console.log(userProfile);
     if (userProfile.name) {
       return (
@@ -34,7 +34,7 @@ export default function HeaderHome() {
           </button>
         </>
       );
->>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
+// >>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
     }
     return <NavLink to="/login">Login</NavLink>;
   };

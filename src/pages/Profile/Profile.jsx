@@ -131,11 +131,8 @@ export default function Profile() {
                         value={true}
                         onChange={frm.handleChange}
                       />
-<<<<<<< HEAD
-                      <label forHTML="male">Male</label>
-=======
+
                       <label for="">Male</label>
->>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
                       <input
                         className="size"
                         type="radio"
@@ -143,11 +140,8 @@ export default function Profile() {
                         value={false}
                         onChange={frm.handleChange}
                       />
-<<<<<<< HEAD
                       <label forHTML="female">Female</label>
-=======
                       <label for="">Female</label>
->>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
                     </div>
                   </div>
                   <div className="text-end">
