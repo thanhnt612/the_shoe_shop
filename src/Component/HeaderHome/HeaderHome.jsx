@@ -7,7 +7,9 @@ export default function HeaderHome() {
   const renderLogin = () => {
     console.log(userLogin)
     if(userLogin.email) {
-      return <NavLink to={'/profile'}>Hello ! {userLogin.name}</NavLink>
+      console.log(userLogin)
+      return <NavLink to={'/profile'}>Hello ! {userLogin.email}</NavLink>
+      
     }
     return <NavLink to="/login">Login</NavLink>
   }
@@ -30,7 +32,7 @@ export default function HeaderHome() {
             <span>Search</span>
             </NavLink>
           </div>
-          <NavLink to="/cart">
+          <NavLink to="/cart" >
             <img src="../img/image 7.png" alt="Cart" />
           </NavLink>
           <span>(1)</span>

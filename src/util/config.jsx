@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { history } from '../index';
+
+
 export const USER_LOGIN = 'userLogin';
 export const ACCESSTOKEN = 'accessToken';
 export const settings = {
@@ -71,3 +74,34 @@ export const TOKEN_CYBERSOFT = 'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3ht
 export const http = axios.create({
     baseURL: 'https://shop.cyberlearn.vn', 
 });
+
+http.interceptors.request.use((config) => {
+    config.headers = {
+        ...config.headers,
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: 'Bearer ' + settings.getStore(ACCESSTOKEN)
+    }
+
+    return config;
+
+}, err => {
+    console.log(err);
+    return Promise.reject(err);
+})
+//cấu hình cho response: Server sẽ trả dữ liệu về cho client
+http.interceptors.response.use((response) => {
+    return response;
+},  (error) => {
+
+    //Thất bại của tất cả request sử dụng http sẽ trả vào đây
+    console.log(error);
+    if(error.response?.status === 401) {
+        // window.location.href = '/login';
+        //Chuyển hướng trang mà không cần reload lại trang để giữ được các state hiện tại trên redux
+        history.push('/login');
+    }
+    if(error.response?.status === 400 || error.response?.status === 400) {
+        history.push('/');
+    }
+    return Promise.reject(error);
+})

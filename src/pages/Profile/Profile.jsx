@@ -121,7 +121,7 @@ export default function Profile() {
                         checked
                         value="true"
                       />
-                      <label for="male">Male</label>
+                      <label forHTML="male">Male</label>
                       <input
                         className="size"
                         type="radio"
@@ -129,7 +129,7 @@ export default function Profile() {
                         name="gender"
                         value="false"
                       />
-                      <label for="female">Female</label>
+                      <label forHTML="female">Female</label>
                     </div>
                   </div>
                   <div className="text-end">
