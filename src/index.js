@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import { unstable_HistoryRouter as HistoryRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
 import HomeTemplates from "./templates/HomeTemplates";
@@ -12,16 +12,22 @@ import Profile from "./pages/Profile/Profile";
 import Detail from "./pages/Detail/Detail";
 import "./index.scss";
 import Search from "./pages/Search/Search";
+// <<<<<<< HEAD
+// import {createBrowserHistory} from 'history'
+
+// export const history = createBrowserHistory();
+// =======
 //Cấu hình History
-import {
-  unstable_HistoryRouter as HistoryRouter,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+// import {
+//   unstable_HistoryRouter as HistoryRouter,
+//   Navigate,
+//   Route,
+//   Routes,
+// } from "react-router-dom";
 import { createBrowserHistory } from "history";
 export const history = createBrowserHistory();
 
+// >>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

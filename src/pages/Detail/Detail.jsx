@@ -27,7 +27,7 @@ export default function Detail() {
             <p>{productDetail.description}</p>
             <h5>Available size</h5>
             {productDetail.size?.map((size, index) => {
-              return <button className='btn btnSize mt-3 mb-2'>{size}</button>
+              return <button className='btn btnSize mt-3 mb-2' key={index}>{size}</button>
             })}
 
             <div className="add-to-cart">

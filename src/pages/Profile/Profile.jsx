@@ -143,6 +143,7 @@ export default function Profile() {
                         value="male"
                         onChange={frm.handleChange}
                       />
+
                       <label for="">Male</label>
                       <input
                         className="size"
@@ -152,6 +153,7 @@ export default function Profile() {
                         value="female"
                         onChange={frm.handleChange}
                       />
+                      <label forHTML="female">Female</label>
                       <label for="">Female</label>
                     </div>
                   </div>

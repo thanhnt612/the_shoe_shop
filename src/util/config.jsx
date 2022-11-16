@@ -2,6 +2,7 @@ import axios from "axios";
 import { history } from "../index";
 export const USER_LOGIN = "userLogin";
 export const ACCESSTOKEN = "accessToken";
+
 export const settings = {
   setStorageJson: (name, data) => {
     data = JSON.stringify(data);
@@ -15,14 +16,14 @@ export const settings = {
       const data = JSON.parse(localStorage.getItem(name));
       return data;
     }
-    return; //undefined
+    return; 
   },
   getStore: (name) => {
     if (localStorage.getItem(name)) {
       const data = localStorage.getItem(name);
       return data;
     }
-    return; //undefined
+    return; 
   },
   setCookieJson: (name, value, days) => {
     var expires = "";
@@ -110,3 +111,4 @@ http.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
