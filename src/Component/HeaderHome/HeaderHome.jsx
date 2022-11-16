@@ -6,7 +6,6 @@ import { ACCESSTOKEN, settings, USER_LOGIN } from "../../util/config";
 export default function HeaderHome() {
   const { userProfile } = useSelector((state) => state.userReducer);
   const renderLogin = () => {
-    console.log(userProfile);
     if (userProfile.name) {
       return (
         <>
@@ -28,7 +27,11 @@ export default function HeaderHome() {
         </>
       );
     }
-    return <NavLink to="/login">Login</NavLink>;
+    return (
+      <NavLink className="nav-link bg-secondary rounded p-1" to="/login">
+        Login
+      </NavLink>
+    );
   };
 
   return (
@@ -53,7 +56,9 @@ export default function HeaderHome() {
           </NavLink>
           <span>(1)</span>
           {renderLogin()}
-          <NavLink to="/register">Register</NavLink>
+          <NavLink className="nav-link bg-secondary rounded p-1" to="/register">
+            Register
+          </NavLink>
         </div>
       </div>
       <nav className="navbar navbar-expand-sm navbar-light bg-white">

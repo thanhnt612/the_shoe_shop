@@ -1,16 +1,18 @@
 import { useFormik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { getProfileApi } from "../../redux/reducer/userReducer";
 export default function Profile() {
+  const { userProfile } = useSelector((state) => state.userReducer);
+
   const frm = useFormik({
     initialValues: {
-      email: "",
-      number: "",
-      name: "",
-      password: "",
-      gender: "",
+      email: userProfile.email,
+      phone: userProfile.phone,
+      name: userProfile.name,
+      password: userProfile.password,
+      gender: userProfile.gender,
     },
     validationSchema: yup.object().shape({
       name: yup.string().required("Xin mời nhập vào tên !!!"),
@@ -18,29 +20,34 @@ export default function Profile() {
         .string()
         .email("Email không đúng định dạng")
         .required("Xin mời nhập vào email !!!"),
-      number: yup
+      phone: yup
         .number()
         .typeError("Xin hãy nhập vào ký tự là số")
         .required("Xin mời nhập vào số điện thoại !!!"),
       password: yup.string().required("Xin mời nhập mật khẩu !!!"),
     }),
     onSubmit: (values) => {
-      if (values.gender === "true") {
+      if (values.gender === "male") {
         values.gender = true;
       } else {
         values.gender = false;
       }
-      console.log(values);
+      console.log("value: ", values);
     },
   });
-  const {userProfile} = useSelector(state => state.userReducer);
+  // console.log(frm);
+  // const handleOnChange = (e) => {
+  //   const { id, value } = e.target;
+  //   setProfile({
+  //     [id]: value,
+  //   });
+  // };
   const dispatch = useDispatch();
   useEffect(() => {
     //Gọi api get profile
     const action = getProfileApi();
     dispatch(action);
-    //
-  },[]);
+  }, []);
   return (
     <div className="profile-page">
       <div className="my-3 col-6 title">
@@ -64,6 +71,7 @@ export default function Profile() {
                     className="form-control"
                     id="email"
                     name="email"
+                    value={frm.values.email}
                     onChange={frm.handleChange}
                     onBlur={frm.handleBlur}
                   />
@@ -77,13 +85,14 @@ export default function Profile() {
                   <p>Phone</p>
                   <input
                     className="form-control"
-                    id="number"
-                    name="number"
+                    id="phone"
+                    name="phone"
+                    value={frm.values.phone}
                     onChange={frm.handleChange}
                     onBlur={frm.handleBlur}
                   />
-                  {frm.errors.number ? (
-                    <p className="text text-danger">{frm.errors.number}</p>
+                  {frm.errors.phone ? (
+                    <p className="text text-danger">{frm.errors.phone}</p>
                   ) : (
                     ""
                   )}
@@ -96,6 +105,7 @@ export default function Profile() {
                     className="form-control"
                     id="name"
                     name="name"
+                    value={frm.values.name}
                     onChange={frm.handleChange}
                     onBlur={frm.handleBlur}
                   />
@@ -111,14 +121,15 @@ export default function Profile() {
                     className="form-control"
                     id="password"
                     name="password"
+                    value={frm.values.password}
                     onChange={frm.handleChange}
                     onBlur={frm.handleBlur}
                   />
-                  {frm.errors.password ? (
+                  {/* {frm.errors.password ? (
                     <p className="text text-danger">{frm.errors.password}</p>
                   ) : (
                     ""
-                  )}
+                  )} */}
                 </div>
                 <div className="update mt-4">
                   <div className="d-flex align-items-center">
@@ -128,7 +139,8 @@ export default function Profile() {
                         className="size"
                         type="radio"
                         name="gender"
-                        value={true}
+                        // checked={frm.values.gender === true ? true : ""}
+                        value="male"
                         onChange={frm.handleChange}
                       />
                       <label for="">Male</label>
@@ -136,7 +148,8 @@ export default function Profile() {
                         className="size"
                         type="radio"
                         name="gender"
-                        value={false}
+                        // checked={frm.values.gender === false ? true : ""}
+                        value="female"
                         onChange={frm.handleChange}
                       />
                       <label for="">Female</label>

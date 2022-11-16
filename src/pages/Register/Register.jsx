@@ -8,7 +8,7 @@ export default function Register() {
   const frm = useFormik({
     initialValues: {
       email: "",
-      number: "",
+      phone: "",
       name: "",
       password: "",
       passwordConfirm: "",
@@ -20,7 +20,7 @@ export default function Register() {
         .string()
         .email("Email không đúng định dạng")
         .required("Xin mời nhập vào email !!!"),
-      number: yup
+        phone: yup
         .number()
         .typeError("Xin hãy nhập vào ký tự là số")
         .required("Xin mời nhập vào số điện thoại !!!"),
@@ -116,14 +116,14 @@ export default function Register() {
           <div className="form-group">
             <p>Phone</p>
             <input
-              name="number"
-              placeholder="number"
+              name="phone"
+              placeholder="phone"
               className="form-control"
               onChange={frm.handleChange}
               onBlur={frm.handleBlur}
             />
-            {frm.errors.number ? (
-              <p className="text text-danger">{frm.errors.number}</p>
+            {frm.errors.phone ? (
+              <p className="text text-danger">{frm.errors.phone}</p>
             ) : (
               ""
             )}
@@ -133,7 +133,7 @@ export default function Register() {
             <input
               className="radioButton"
               type="radio"
-              value={true}
+              value="true"
               name="gender"
               onChange={frm.handleChange}
             />
@@ -141,7 +141,7 @@ export default function Register() {
             <input
               className="radioButton"
               type="radio"
-              value={false}
+              value="false"
               name="gender"
               onChange={frm.handleChange}
             />
