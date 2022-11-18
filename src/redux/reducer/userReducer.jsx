@@ -27,11 +27,6 @@ const userReducer = createSlice({
     },
     getProfileAction: (state, action) => {
       state.userProfile = action.payload;
-      // settings.setStorageJson("userProfile", state.userProfile);
-      // settings.setStorage(
-      //   "userProfile",
-      //   JSON.stringify(state.userProfile.map((info) => info))
-      // );
       settings.setStorageJson(USER_PROFILE, state.userProfile);
     },
   },
@@ -46,9 +41,6 @@ export const loginApi = (userLogin) => {
     const result = await http.post(`/api/Users/signin`, userLogin);
     const action = loginAction(result.data.content);
     dispatch(action);
-    //Tiếp tục gọi api và get profile
-    const actionGetProfile = getProfileAction(result.data.content);
-    dispatch(actionGetProfile);
     history.push("/profile");
     settings.setStorageJson(USER_LOGIN, result.data.content);
     settings.setStorage(ACCESSTOKEN, result.data.content.accessToken);
@@ -72,9 +64,9 @@ export const loginFacebookApi = (tokenFBApp) => {
   };
 };
 
-export const getProfileApi = (info) => {
+export const getProfileApi = () => {
   return async (dispatch) => {
-    const result = await http.post("/api/Users/getProfile", info);
+    const result = await http.post("/api/Users/getProfile");
     console.log("get profile: ", result);
     const action = getProfileAction(result.data.content);
     dispatch(action);
@@ -86,6 +78,8 @@ export const registerApi = (userRegister) => {
     console.log(result);
     const action = loginAction(result.data.content);
     dispatch(action);
+    const actionGetProfile = getProfileAction(result.data.content);
+    dispatch(actionGetProfile);
     history.push("/login");
   };
 };
@@ -93,10 +87,10 @@ export const registerApi = (userRegister) => {
 export const updateApi = (userUpdate) => {
   return async (dispatch) => {
     const result = await http.post(`api/Users/updateProfile`, userUpdate);
-    console.log("update profile: ", result);
+    // console.log("update profile: ", result);
     // const action = loginAction(result.data.content);
     // dispatch(action);
-    const actionUpdate = getProfileAction(result.data.content);
-    dispatch(actionUpdate);
+    // const actionUpdate = getProfileAction(result.data.content);
+    // dispatch(actionUpdate);
   };
 };

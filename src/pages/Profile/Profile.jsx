@@ -1,12 +1,15 @@
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { getProfileApi } from "../../redux/reducer/userReducer";
 export default function Profile() {
   const dispatch = useDispatch();
+  useEffect(() => {
+    const action = getProfileApi();
+    dispatch(action);
+  }, []);
   const { userProfile } = useSelector((state) => state.userReducer);
-  console.log("User Profile: ", userProfile);
   const frm = useFormik({
     initialValues: {
       email: userProfile.email,
@@ -33,13 +36,8 @@ export default function Profile() {
         values.gender = false;
       }
       console.log("Cập nhật: ", values);
-      // dispatch(getProfileApi(values));
     },
   });
-  useEffect(() => {
-    const action = getProfileApi();
-    dispatch(action);
-  }, []);
   return (
     <div className="profile-page">
       <div className="my-3 col-6 title">
@@ -121,7 +119,12 @@ export default function Profile() {
                         className="size"
                         type="radio"
                         name="gender"
-                        // checked={frm.values.gender === true ? true : ""}
+                        checked={
+                          (frm.values.gender === true) |
+                          (frm.values.gender === "male")
+                            ? true
+                            : ""
+                        }
                         value="male"
                         onChange={frm.handleChange}
                       />
@@ -130,7 +133,13 @@ export default function Profile() {
                         className="size"
                         type="radio"
                         name="gender"
-                        // checked={frm.values.gender === false ? true : ""}
+                        checked={
+                          (frm.values.gender === false) |
+                          (frm.values.gender === "female")
+                            ? true
+                            : ""
+                        }
+                        // checked={frm.values.gender === "female"}
                         value="female"
                         onChange={frm.handleChange}
                       />

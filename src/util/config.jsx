@@ -3,7 +3,7 @@ import { history } from "../index";
 export const USER_LOGIN = "userLogin";
 export const USER_PROFILE = "userProfile";
 export const ACCESSTOKEN = "accessToken";
-// >>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
+
 export const settings = {
   setStorageJson: (name, data) => {
     data = JSON.stringify(data);
@@ -17,14 +17,14 @@ export const settings = {
       const data = JSON.parse(localStorage.getItem(name));
       return data;
     }
-    return; //undefined
+    return; 
   },
   getStore: (name) => {
     if (localStorage.getItem(name)) {
       const data = localStorage.getItem(name);
       return data;
     }
-    return; //undefined
+    return; 
   },
   setCookieJson: (name, value, days) => {
     var expires = "";
@@ -112,4 +112,4 @@ http.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-// >>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
+
