@@ -1,12 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ACCESSTOKEN, http, settings, USER_LOGIN } from "../../util/config";
+import {
+  ACCESSTOKEN,
+  http,
+  settings,
+  USER_LOGIN,
+  USER_PROFILE,
+} from "../../util/config";
+import { history } from "../../index";
 
 const initialState = {
   userLogin: settings.getStorageJson(USER_LOGIN)
     ? settings.getStorageJson(USER_LOGIN)
     : {},
-  userProfile: {},
-  userRegister: {},
+  userProfile: settings.getStorageJson(USER_PROFILE)
+    ? settings.getStorageJson(USER_PROFILE)
+    : {},
 };
 
 const userReducer = createSlice({
@@ -19,15 +27,17 @@ const userReducer = createSlice({
     },
     getProfileAction: (state, action) => {
       state.userProfile = action.payload;
+      // settings.setStorageJson("userProfile", state.userProfile);
+      // settings.setStorage(
+      //   "userProfile",
+      //   JSON.stringify(state.userProfile.map((info) => info))
+      // );
+      settings.setStorageJson(USER_PROFILE, state.userProfile);
     },
-    // registerAction: (state, action) => {
-    //   state.userLogin = action.payload;
-    // },
   },
 });
 
-export const { loginAction, getProfileAction, registerAction } =
-  userReducer.actions;
+export const { loginAction, getProfileAction } = userReducer.actions;
 
 export default userReducer.reducer;
 
@@ -35,11 +45,11 @@ export const loginApi = (userLogin) => {
   return async (dispatch) => {
     const result = await http.post(`/api/Users/signin`, userLogin);
     const action = loginAction(result.data.content);
-    console.log(result);
     dispatch(action);
     //Tiếp tục gọi api và get profile
-    const actionGetProfile = getProfileApi();
+    const actionGetProfile = getProfileAction(result.data.content);
     dispatch(actionGetProfile);
+    history.push("/profile");
     settings.setStorageJson(USER_LOGIN, result.data.content);
     settings.setStorage(ACCESSTOKEN, result.data.content.accessToken);
     settings.setCookie(ACCESSTOKEN, result.data.content.accessToken, 30);
@@ -62,9 +72,10 @@ export const loginFacebookApi = (tokenFBApp) => {
   };
 };
 
-export const getProfileApi = () => {
+export const getProfileApi = (info) => {
   return async (dispatch) => {
-    const result = await http.post("/api/Users/getProfile");
+    const result = await http.post("/api/Users/getProfile", info);
+    console.log("get profile: ", result);
     const action = getProfileAction(result.data.content);
     dispatch(action);
   };
@@ -75,8 +86,17 @@ export const registerApi = (userRegister) => {
     console.log(result);
     const action = loginAction(result.data.content);
     dispatch(action);
-    settings.setStorageJson(USER_LOGIN, result.data.content);
-    settings.setStorage(ACCESSTOKEN, result.data.content.accessToken);
-    settings.setCookie(ACCESSTOKEN, result.data.content.accessToken, 30);
+    history.push("/login");
+  };
+};
+
+export const updateApi = (userUpdate) => {
+  return async (dispatch) => {
+    const result = await http.post(`api/Users/updateProfile`, userUpdate);
+    console.log("update profile: ", result);
+    // const action = loginAction(result.data.content);
+    // dispatch(action);
+    const actionUpdate = getProfileAction(result.data.content);
+    dispatch(actionUpdate);
   };
 };

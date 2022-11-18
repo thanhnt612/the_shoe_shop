@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { ACCESSTOKEN, settings, USER_LOGIN } from "../../util/config";
+import { ACCESSTOKEN, settings, USER_PROFILE } from "../../util/config";
 
 export default function HeaderHome() {
   const { userProfile } = useSelector((state) => state.userReducer);
@@ -17,7 +17,7 @@ export default function HeaderHome() {
             style={{ background: "none", border: "none" }}
             onClick={() => {
               settings.eraseCookie(ACCESSTOKEN, 0);
-              localStorage.removeItem(USER_LOGIN);
+              localStorage.removeItem(USER_PROFILE);
               localStorage.removeItem(ACCESSTOKEN);
               window.location.href = "/login";
             }}
@@ -26,7 +26,7 @@ export default function HeaderHome() {
           </button>
         </>
       );
-// >>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
+      // >>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
     }
     return (
       <NavLink className="nav-link bg-secondary rounded p-1" to="/login">
@@ -52,7 +52,7 @@ export default function HeaderHome() {
               <span>Search</span>
             </NavLink>
           </div>
-          <NavLink to="/cart" >
+          <NavLink to="/cart">
             <img src="../img/image 7.png" alt="Cart" />
           </NavLink>
           <span>(1)</span>

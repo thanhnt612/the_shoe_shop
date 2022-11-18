@@ -7,7 +7,7 @@ import { loginApi } from "../../redux/reducer/userReducer";
 import { useDispatch } from "react-redux";
 
 export default function Login() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const frm = useFormik({
     initialValues: {
@@ -21,7 +21,7 @@ export default function Login() {
       console.log(values);
       const action = loginApi(values);
       dispatch(action);
-      navigate("/home");
+      // navigate("/home");
     },
   });
 

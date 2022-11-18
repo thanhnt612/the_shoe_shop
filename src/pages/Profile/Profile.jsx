@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { getProfileApi } from "../../redux/reducer/userReducer";
 export default function Profile() {
+  const dispatch = useDispatch();
   const { userProfile } = useSelector((state) => state.userReducer);
-
+  console.log("User Profile: ", userProfile);
   const frm = useFormik({
     initialValues: {
       email: userProfile.email,
@@ -24,7 +25,6 @@ export default function Profile() {
         .number()
         .typeError("Xin hãy nhập vào ký tự là số")
         .required("Xin mời nhập vào số điện thoại !!!"),
-      password: yup.string().required("Xin mời nhập mật khẩu !!!"),
     }),
     onSubmit: (values) => {
       if (values.gender === "male") {
@@ -32,19 +32,11 @@ export default function Profile() {
       } else {
         values.gender = false;
       }
-      console.log("value: ", values);
+      console.log("Cập nhật: ", values);
+      // dispatch(getProfileApi(values));
     },
   });
-  // console.log(frm);
-  // const handleOnChange = (e) => {
-  //   const { id, value } = e.target;
-  //   setProfile({
-  //     [id]: value,
-  //   });
-  // };
-  const dispatch = useDispatch();
   useEffect(() => {
-    //Gọi api get profile
     const action = getProfileApi();
     dispatch(action);
   }, []);
@@ -69,7 +61,6 @@ export default function Profile() {
                   <p>Email</p>
                   <input
                     className="form-control"
-                    id="email"
                     name="email"
                     value={frm.values.email}
                     onChange={frm.handleChange}
@@ -85,7 +76,6 @@ export default function Profile() {
                   <p>Phone</p>
                   <input
                     className="form-control"
-                    id="phone"
                     name="phone"
                     value={frm.values.phone}
                     onChange={frm.handleChange}
@@ -103,7 +93,6 @@ export default function Profile() {
                   <p>Name</p>
                   <input
                     className="form-control"
-                    id="name"
                     name="name"
                     value={frm.values.name}
                     onChange={frm.handleChange}
@@ -119,17 +108,10 @@ export default function Profile() {
                   <p>Password</p>
                   <input
                     className="form-control"
-                    id="password"
                     name="password"
-                    value={frm.values.password}
                     onChange={frm.handleChange}
                     onBlur={frm.handleBlur}
                   />
-                  {/* {frm.errors.password ? (
-                    <p className="text text-danger">{frm.errors.password}</p>
-                  ) : (
-                    ""
-                  )} */}
                 </div>
                 <div className="update mt-4">
                   <div className="d-flex align-items-center">
@@ -143,7 +125,6 @@ export default function Profile() {
                         value="male"
                         onChange={frm.handleChange}
                       />
-
                       <label for="">Male</label>
                       <input
                         className="size"
@@ -153,7 +134,6 @@ export default function Profile() {
                         value="female"
                         onChange={frm.handleChange}
                       />
-                      <label forHTML="female">Female</label>
                       <label for="">Female</label>
                     </div>
                   </div>
