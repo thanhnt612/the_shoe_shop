@@ -41,7 +41,8 @@ export const loginApi = (userLogin) => {
     const result = await http.post(`/api/Users/signin`, userLogin);
     const action = loginAction(result.data.content);
     dispatch(action);
-    history.push("/profile");
+    const actionGetProfile = getProfileApi();
+    dispatch(actionGetProfile);
     settings.setStorageJson(USER_LOGIN, result.data.content);
     settings.setStorage(ACCESSTOKEN, result.data.content.accessToken);
     settings.setCookie(ACCESSTOKEN, result.data.content.accessToken, 30);
@@ -64,33 +65,25 @@ export const loginFacebookApi = (tokenFBApp) => {
   };
 };
 
+export const registerApi = (userRegister) => {
+  return async (dispatch) => {
+    const result = await http.post(`/api/Users/signup`, userRegister);
+  };
+};
 export const getProfileApi = () => {
   return async (dispatch) => {
     const result = await http.post("/api/Users/getProfile");
-    console.log("get profile: ", result);
     const action = getProfileAction(result.data.content);
     dispatch(action);
   };
 };
-export const registerApi = (userRegister) => {
-  return async (dispatch) => {
-    const result = await http.post(`/api/Users/signup`, userRegister);
-    console.log(result);
-    const action = loginAction(result.data.content);
-    dispatch(action);
-    const actionGetProfile = getProfileAction(result.data.content);
-    dispatch(actionGetProfile);
-    history.push("/login");
-  };
-};
 
-export const updateApi = (userUpdate) => {
+export const updateProfileApi = (update) => {
   return async (dispatch) => {
-    const result = await http.post(`api/Users/updateProfile`, userUpdate);
-    // console.log("update profile: ", result);
-    // const action = loginAction(result.data.content);
-    // dispatch(action);
-    // const actionUpdate = getProfileAction(result.data.content);
-    // dispatch(actionUpdate);
+    const result = await http.post(`api/Users/updateProfile`, update);
+    console.log("update profile: ", result);
+    const actionGetProfile = getProfileApi();
+    dispatch(actionGetProfile);
+    alert("Lưu thông tin đã chỉnh sửa");
   };
 };

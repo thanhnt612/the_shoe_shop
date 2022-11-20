@@ -1,10 +1,12 @@
 import { useFormik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { registerApi } from "../../redux/reducer/userReducer";
 export default function Register() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const frm = useFormik({
     initialValues: {
       email: "",
@@ -20,7 +22,7 @@ export default function Register() {
         .string()
         .email("Email không đúng định dạng")
         .required("Xin mời nhập vào email !!!"),
-        phone: yup
+      phone: yup
         .number()
         .typeError("Xin hãy nhập vào ký tự là số")
         .required("Xin mời nhập vào số điện thoại !!!"),
@@ -38,6 +40,7 @@ export default function Register() {
       console.log(values);
       const action = registerApi(values);
       dispatch(action);
+      navigate("/login");
     },
   });
   return (

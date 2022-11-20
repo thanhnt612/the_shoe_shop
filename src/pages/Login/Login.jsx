@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Form, Formik, Field, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as yup from "yup";
 import LoginFacebook from "../../Component/LoginFacebook/LoginFacebook";
 import { loginApi } from "../../redux/reducer/userReducer";
@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const frm = useFormik({
     initialValues: {
       email: "",
@@ -20,6 +21,7 @@ export default function Login() {
       console.log(values);
       const action = loginApi(values);
       dispatch(action);
+      navigate("/home");
     },
   });
 
