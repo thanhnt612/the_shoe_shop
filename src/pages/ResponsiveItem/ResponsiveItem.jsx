@@ -5,8 +5,6 @@ export default function ResponsiveItem(props) {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-
-  console.log(screen);
   useEffect(() => {
     const handleSetScreen = () => {
       setScreen({

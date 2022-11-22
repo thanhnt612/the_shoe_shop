@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { ACCESSTOKEN, settings, USER_PROFILE } from "../../util/config";
 
 export default function HeaderHome() {
+  const { cart } = useSelector((state) => state.cartReducer);
   const { userProfile } = useSelector((state) => state.userReducer);
   const renderLogin = () => {
     if (userProfile.name) {
@@ -52,10 +53,16 @@ export default function HeaderHome() {
               <span>Search</span>
             </NavLink>
           </div>
-          <NavLink to="/cart">
-            <img src="../img/image 7.png" alt="Cart" />
+
+          <NavLink
+            style={{ textDecoration: "none" }}
+            className="nav-item text-light px-5"
+            to={"cart"}
+          >
+            <i className="fa fa-cart-plus"></i> ({cart.length}) - {cart.reduce((tt, itemCart, index) => {
+                return (tt += itemCart.quantity * itemCart.price);
+              }, 0).toLocaleString()}$
           </NavLink>
-          <span>(1)</span>
           {renderLogin()}
           <NavLink className="nav-link bg-secondary rounded p-1" to="/register">
             Register

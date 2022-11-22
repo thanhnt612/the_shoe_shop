@@ -3,7 +3,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { getProfileApi, updateProfileApi } from "../../redux/reducer/userReducer";
+import {
+  getProfileApi,
+  updateProfileApi,
+} from "../../redux/reducer/userReducer";
 export default function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -12,7 +15,7 @@ export default function Profile() {
     dispatch(action);
   }, []);
   const { userProfile } = useSelector((state) => state.userReducer);
-  // console.log("Profile Info: ", userProfile);
+  console.log("Profile Info: ", userProfile);
   const frm = useFormik({
     initialValues: {
       email: userProfile.email,
