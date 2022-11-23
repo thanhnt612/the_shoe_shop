@@ -59,9 +59,13 @@ export default function HeaderHome() {
             className="nav-item text-light px-5"
             to={"cart"}
           >
-            <i className="fa fa-cart-plus"></i> ({cart.length}) - {cart.reduce((tt, itemCart, index) => {
+            <i className="fa fa-cart-plus"></i> ({cart.length}) -{" "}
+            {cart
+              .reduce((tt, itemCart, index) => {
                 return (tt += itemCart.quantity * itemCart.price);
-              }, 0).toLocaleString()}$
+              }, 0)
+              .toLocaleString()}
+            $
           </NavLink>
           {renderLogin()}
           <NavLink className="nav-link bg-secondary rounded p-1" to="/register">
