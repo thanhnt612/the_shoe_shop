@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeQuantityAction,
+  deleteProductAction,
   orderProductApi,
 } from "../../redux/reducer/cartReducer";
 import { getProfileApi } from "../../redux/reducer/userReducer";
@@ -80,7 +81,15 @@ export default function Cart() {
                 <td>
                   <div className="btnGroup d-flex justify-content-center">
                     <button className="btn btn-primary btnEdit">EDIT</button>
-                    <button className="btn btn-danger btnDelete">DELETE</button>
+                    <button
+                      className="btn btn-danger btnDelete"
+                      onClick={() => {
+                        const action = deleteProductAction(item.id);
+                        dispatch(action);
+                      }}
+                    >
+                      DELETE
+                    </button>
                   </div>
                 </td>
               </tr>

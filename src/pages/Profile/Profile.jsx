@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import {
   getProfileApi,
@@ -9,13 +8,12 @@ import {
 } from "../../redux/reducer/userReducer";
 export default function Profile() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   useEffect(() => {
     const action = getProfileApi();
     dispatch(action);
   }, []);
   const { userProfile } = useSelector((state) => state.userReducer);
-  console.log("Profile Info: ", userProfile);
+  console.log("Profile Info: ", userProfile.ordersHistory);
   const frm = useFormik({
     initialValues: {
       email: userProfile.email,
@@ -67,9 +65,7 @@ export default function Profile() {
                   <input
                     className="form-control"
                     name="email"
-                    value={frm.values.email}
-                    onChange={frm.handleChange}
-                    onBlur={frm.handleBlur}
+                    value={frm.values.email} //Email chỉ hiện thị, không thay đổi được
                   />
                   {frm.errors.email ? (
                     <p className="text text-danger">{frm.errors.email}</p>
@@ -113,7 +109,7 @@ export default function Profile() {
                   <p>Password</p>
                   <input
                     className="form-control"
-                    name="password"
+                    name="password" //Password chỉ hiện thị, không thay đổi được
                     onChange={frm.handleChange}
                     onBlur={frm.handleBlur}
                   />
@@ -146,7 +142,6 @@ export default function Profile() {
                             ? true
                             : ""
                         }
-                        // checked={frm.values.gender === "female"}
                         value="female"
                         onChange={frm.handleChange}
                       />
@@ -167,53 +162,52 @@ export default function Profile() {
       <div className="order">
         <div className="title-order d-flex my-3">
           <h3>Order History</h3>
-          {/* <h3 className="text-dark ms-4">Favorite</h3> */}
         </div>
-        <div className="buying-history my-3">
-          <span>+ Order have been placed on 10 - 11 - 2022</span>
-        </div>
-        <table className="table text-center border">
-          <thead>
-            <tr>
-              <td>id</td>
-              <td>img</td>
-              <td>name</td>
-              <td>price</td>
-              <td>quantity</td>
-              <td>total</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>
-                <img
-                  src="https://picsum.photos/300/300"
-                  alt="..."
-                  style={{ width: "50px", height: "50px" }}
-                />
-              </td>
-              <td>Product 1</td>
-              <td>1000</td>
-              <td>1</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>
-                <img
-                  src="https://picsum.photos/200/200"
-                  alt="..."
-                  style={{ width: "50px", height: "50px" }}
-                />
-              </td>
-              <td>Product 2</td>
-              <td>1000</td>
-              <td>1</td>
-              <td>1000</td>
-            </tr>
-          </tbody>
-        </table>
+        {userProfile.ordersHistory.map((info, index) => {
+          return (
+            <>
+              <div className="buying-history my-3">
+                <span>+ Order have been placed on {info.date}</span>
+              </div>
+              <table className="table text-center border">
+                <thead>
+                  <tr>
+                    <td>id</td>
+                    <td>img</td>
+                    <td>name</td>
+                    <td>price</td>
+                    <td>quantity</td>
+                    <td>total</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{info.id}</td>
+                    {info.orderDetail.map((item, index) => {
+                      return (
+                        <>
+                          <td>
+                            <img
+                              src={item.image}
+                              alt="..."
+                              style={{ width: "50px", height: "50px" }}
+                            />
+                          </td>
+                          <td>{item.name}</td>
+                          <td>{item.price}$</td>
+                          <td>{item.quantity}</td>
+                          <td>
+                            {(item.quantity * item.price).toLocaleString()}$
+                          </td>
+                        </>
+                      );
+                    })}
+                  </tr>
+                </tbody>
+              </table>
+            </>
+          );
+        })}
       </div>
     </div>
   );

@@ -23,14 +23,20 @@ const cartReducer = createSlice({
       const item = state.cart.find((itemCart) => itemCart.id === id);
       item.quantity += quantity;
     },
-    orderProductAction: (state, action) => {
-
+    deleteProductAction: (state, action) => {
+      const id = action.payload;
+      state.cart = state.cart.filter((item) => item.id !== id);
     },
+    orderProductAction: (state, action) => {},
   },
 });
 
-export const { addNewProductAction, changeQuantityAction, orderProductAction } =
-  cartReducer.actions;
+export const {
+  addNewProductAction,
+  changeQuantityAction,
+  deleteProductAction,
+  orderProductAction,
+} = cartReducer.actions;
 
 export default cartReducer.reducer;
 export const orderProductApi = () => {

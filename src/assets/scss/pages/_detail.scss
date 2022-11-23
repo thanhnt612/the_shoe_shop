@@ -40,11 +40,8 @@
           }
         }
         .add-to-cart-button {
-            color: $text-c1-light;
-          background-image: linear-gradient(
-            to right,
-            $bg-c1-addToCard-button
-          );
+          color: $text-c1-light;
+          background-image: linear-gradient(to right, $bg-c1-addToCard-button);
           background-size: 200%;
           padding: 13px 36px;
           margin-top: 7px;
@@ -63,37 +60,47 @@
   h3 {
   }
   .row {
-    .col-4 {
-        img {
+    .col-12 {
+      img {
+      }
+      h1 {
+        font-size: $text-3xl;
+        font-weight: $text-regular;
+        @include responsive("xxxs") {
+          font-size: $text-xl;
         }
-        h1 {
-            font-size: $text-3xl;
-            font-weight: $text-regular;
+
+        @include responsive("sm") {
+          font-size: $text-3xl;
         }
-        p {
-            color: $bg-hover-button-size;
+
+        @include responsive("lg") {
+          font-size: $text-4xl;
         }
-        .button {
-            .btnBuy {
-                padding: 10px 77px;
-                border: none;
-                background-color: $bg-c1-button-buy;
-                &:hover {
-                    background-color: $bg-hover-button-buy;
-                    transition: 0.6s;
-                }
-                
-            }
-            .btnPrice {
-                padding: 10px 77px;
-                border: none;
-                background-color: $bg-c1-button-size;
-                &:hover {
-                    background-color: $bg-hover-button-size ;
-                    transition: 0.6s;
-                }
-            }
+      }
+      p {
+        color: $bg-hover-button-size;
+      }
+      .button {
+        .btnBuy {
+          padding: 10px 40px;
+          border: none;
+          background-color: $bg-c1-button-buy;
+          &:hover {
+            background-color: $bg-hover-button-buy;
+            transition: 0.6s;
+          }
         }
+        .btnPrice {
+          padding: 10px 77px;
+          border: none;
+          background-color: $bg-c1-button-size;
+          &:hover {
+            background-color: $bg-hover-button-size;
+            transition: 0.6s;
+          }
+        }
+      }
     }
   }
 }

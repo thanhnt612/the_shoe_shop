@@ -87,7 +87,7 @@ export default function Detail() {
           {productDetail.relatedProducts?.map((prod, index) => {
             return (
               <div
-                className="col-4 d-flex flex-column justify-content-between"
+                className="col-12 col-lg-6 col-xl-4 d-flex flex-column justify-content-between"
                 key={index}
               >
                 <img
