@@ -20,7 +20,7 @@ export default function HeaderHome() {
               settings.eraseCookie(ACCESSTOKEN, 0);
               localStorage.removeItem(USER_PROFILE);
               localStorage.removeItem(ACCESSTOKEN);
-              window.location.href = "/login";
+              window.location.href = "/";
             }}
           >
             Đăng xuất <i class="fa-solid fa-circle-xmark"></i>

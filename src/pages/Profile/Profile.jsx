@@ -13,7 +13,6 @@ export default function Profile() {
     dispatch(action);
   }, []);
   const { userProfile } = useSelector((state) => state.userReducer);
-  console.log("Profile Info: ", userProfile.ordersHistory);
   const frm = useFormik({
     initialValues: {
       email: userProfile.email,
