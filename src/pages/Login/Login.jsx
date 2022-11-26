@@ -61,7 +61,7 @@ export default function Login() {
             Login
           </button>
         </div>
-        <LoginFacebook />
+        {/* <LoginFacebook /> */}
       </div>
     </form>
   );
