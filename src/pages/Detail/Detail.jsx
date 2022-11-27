@@ -20,7 +20,6 @@ export default function Detail() {
     const action = getProductDetailApi(id);
     dispatch(action);
   }, [id]);
-  console.log(productDetail);
   return (
     <>
       <div className="container mt-5 productDetail">

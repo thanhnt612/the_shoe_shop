@@ -13,6 +13,7 @@ export default function Profile() {
     dispatch(action);
   }, []);
   const { userProfile } = useSelector((state) => state.userReducer);
+  console.log(userProfile);
   const frm = useFormik({
     initialValues: {
       email: userProfile.email,
@@ -32,13 +33,14 @@ export default function Profile() {
         .typeError("Xin hãy nhập vào ký tự là số")
         .required("Xin mời nhập vào số điện thoại !!!"),
     }),
-    onSubmit: (values) => {
-      if (values.gender === "male") {
-        values.gender = true;
+    onSubmit: (update) => {
+      if (update.gender === "male") {
+        update.gender = true;
       } else {
-        values.gender = false;
+        update.gender = false;
       }
-      const action = updateProfileApi(values);
+      //Gửi thông tin cập nhật sau khi submit 
+      const action = updateProfileApi(update);
       dispatch(action);
     },
   });

@@ -17,9 +17,9 @@ export default function Login() {
     validationSchema: yup.object().shape({
       email: yup.string().email("Email không đúng định dạng !"),
     }),
-    onSubmit: (values) => {
-      console.log(values);
-      const action = loginApi(values);
+    onSubmit: (login) => {
+      console.log(login);
+      const action = loginApi(login);
       dispatch(action);
       navigate("/home");
     },

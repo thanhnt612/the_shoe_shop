@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ACCESSTOKEN, http, settings, USER_CART } from "../../util/config";
 import { history } from "../../index";
+
 const initialState = {
   cart: [],
 };
@@ -39,8 +40,18 @@ export const {
 } = cartReducer.actions;
 
 export default cartReducer.reducer;
-export const orderProductApi = () => {
+export const orderProductApi = (id, quantity, email) => {
+  //Lấy 3 giá trị từ cart.jsx từ 99 -> 111 
   return async (dispatch) => {
-    const result = await http.post("/api/Users/order");
+    const result = await http.post("/api/Users/order", {
+      orderDetail: [
+        {
+          productId: id,
+          quantity: quantity,
+        },
+      ],
+      email: email,
+    });
+    console.log("Order Submit: ", result);
   };
 };

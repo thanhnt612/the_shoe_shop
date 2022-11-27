@@ -9,6 +9,7 @@ import { getProfileApi } from "../../redux/reducer/userReducer";
 
 export default function Cart() {
   const { cart } = useSelector((state) => state.cartReducer);
+  const { userProfile } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     const action = getProfileApi();
@@ -18,28 +19,23 @@ export default function Cart() {
     <div className="container cart">
       <h3>Cart</h3>
       <hr />
-      <table className="table">
+      <table className="table border">
         <thead>
           <tr>
-            <th>
-              <input type="checkbox" />
-            </th>
-            <th>id</th>
-            <th>img</th>
-            <th>name</th>
-            <th>price</th>
-            <th>quantity</th>
-            <th>total</th>
-            <th>action</th>
+            <th>Id</th>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Action</th>
+            <th></th>
           </tr>
         </thead>
-        <tbody>
-          {cart.map((item, index) => {
-            return (
+        {cart.map((item, index) => {
+          return (
+            <tbody>
               <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
                 <td>{item.id}</td>
                 <td>
                   <img
@@ -54,6 +50,7 @@ export default function Cart() {
                   <button
                     className="btn btn-success btnQuantity me-2"
                     onClick={() => {
+                      //Tăng số đơn hàng
                       const action = changeQuantityAction({
                         id: item.id,
                         quantity: 1,
@@ -67,6 +64,7 @@ export default function Cart() {
                   <button
                     className="btn btn-success btnQuantity ms-2"
                     onClick={() => {
+                      //Giảm số đơn hàng
                       const action = changeQuantityAction({
                         id: item.id,
                         quantity: -1,
@@ -80,10 +78,10 @@ export default function Cart() {
                 <td>{item.quantity * item.price}$</td>
                 <td>
                   <div className="btnGroup d-flex justify-content-center">
-                    <button className="btn btn-primary btnEdit">EDIT</button>
                     <button
                       className="btn btn-danger btnDelete"
                       onClick={() => {
+                        //Xóa đơn hàng
                         const action = deleteProductAction(item.id);
                         dispatch(action);
                       }}
@@ -92,20 +90,30 @@ export default function Cart() {
                     </button>
                   </div>
                 </td>
+                <td>
+                  <button
+                    className="btn btn-warning btnSubmitCart"
+                    onClick={() => {
+                      //Thêm chức năng đặt hàng
+                      const action = orderProductApi(
+                        item.id,
+                        item.quantity,
+                        userProfile.email
+                      );
+                      dispatch(action);
+                      //Đặt hàng xong thì xóa đi
+                      const actionDel = deleteProductAction(item.id);
+                      dispatch(actionDel);
+                    }}
+                  >
+                    SUBMIT ORDER
+                  </button>
+                </td>
               </tr>
-            );
-          })}
-        </tbody>
+            </tbody>
+          );
+        })}
       </table>
-      <button
-        className="btn btn-warning btnSubmitCart"
-        onClick={() => {
-          const action = orderProductApi();
-          dispatch(action);
-        }}
-      >
-        SUBMIT ORDER
-      </button>
     </div>
   );
 }

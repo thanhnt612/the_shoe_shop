@@ -36,9 +36,9 @@ export const { loginAction, getProfileAction } = userReducer.actions;
 
 export default userReducer.reducer;
 
-export const loginApi = (userLogin) => {
+export const loginApi = (login) => {
   return async (dispatch) => {
-    const result = await http.post(`/api/Users/signin`, userLogin);
+    const result = await http.post(`/api/Users/signin`, login);
     const action = loginAction(result.data.content);
     dispatch(action);
     const actionGetProfile = getProfileApi();
@@ -65,9 +65,9 @@ export const loginFacebookApi = (tokenFBApp) => {
   };
 };
 
-export const registerApi = (userRegister) => {
+export const registerApi = (register) => {
   return async (dispatch) => {
-    const result = await http.post(`/api/Users/signup`, userRegister);
+    const result = await http.post(`/api/Users/signup`, register);
   };
 };
 export const getProfileApi = () => {

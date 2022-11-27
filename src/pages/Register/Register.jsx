@@ -31,14 +31,14 @@ export default function Register() {
         .string()
         .oneOf([yup.ref("password"), null], "Mật khẩu chưa khớp"),
     }),
-    onSubmit: (values) => {
-      if (values.gender === "true") {
-        values.gender = true;
+    onSubmit: (register) => {
+      if (register.gender === "true") {
+        register.gender = true;
       } else {
-        values.gender = false;
+        register.gender = false;
       }
-      console.log(values);
-      const action = registerApi(values);
+      //Gửi thông tin đăng ký sau khi submit
+      const action = registerApi(register);
       dispatch(action);
       navigate("/login");
     },
