@@ -1,19 +1,23 @@
-.profile-page {
+.profile-page-mobile {
   .title {
+    text-align: center;
     background: $bg-title;
     padding: 5px 20px;
     h3 {
-      @include text($text-4xl, $text-regular, $text-c1-light);
+      @include text($text-3xl, $text-regular, $text-c1-light);
     }
   }
   .row {
     .avatar {
+      text-align: center;
       img {
+        width: 30%;
       }
     }
     .info {
       .form-fill {
-        .col-6 {
+        .form-group {
+          padding-bottom: 10px;
           input {
             padding: 16px 12px 14px 14px;
             background: rgba(33, 33, 33, 0.08);
@@ -21,26 +25,27 @@
         }
         .update {
           span {
-            font-size: $text-2xl;
+            font-size: $text-base;
           }
           .gender {
             .size {
               margin: 0 5px;
             }
             input[type="radio"] {
-              width: 25px;
+              width: 20px;
               height: 2em;
               accent-color: $bg-c1-loginButton;
               cursor: pointer;
             }
             label {
-              font-size: $text-2xl;
+              font-size: $text-base;
+              line-height: 35px;
             }
           }
           .btn {
             background-color: $bg-c1-loginButton;
             color: $text-c1-light;
-            font-size: $text-2xl;
+            font-size: $text-base;
             font-weight: $text-regular;
             border-radius: 50px;
             padding: 12px 30px;
@@ -52,7 +57,7 @@
   .order {
     .title-order {
       h3 {
-        @include text($text-3xl, $text-regular, $text-c1-order);
+        @include text($text-2xl, $text-regular, $text-c1-order);
         border: 1px solid #dedddc;
         padding: 15px;
       }
@@ -67,7 +72,7 @@
       thead {
         padding: 10px;
         background: $bg-c1-cart;
-        @include text($text-2xl, $text-regular, $text-c1-dark);
+        @include text($text-base, $text-regular, $text-c1-dark);
       }
       tbody {
         @extend thead;

@@ -4,11 +4,6 @@
     .header-left {
       .row {
         .icon {
-          a {
-            img {
-              //   width: 150px;
-            }
-          }
         }
         .cart {
           font-size: $text-xs;
@@ -41,8 +36,8 @@
     }
   }
   .search-product {
-    width: 100%;
     a {
+      display: block;
       text-decoration: none;
       color: $text-c1-light;
     }

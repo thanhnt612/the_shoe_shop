@@ -22,7 +22,7 @@
           $text-regular,
           $text-c1-light,
           $bg-button-search,
-          15px 30px
+          10px 20px
         );
         border-radius: 50px;
       }
@@ -30,7 +30,7 @@
     .result {
       .tittle {
         background: $bg-title;
-        padding: 12px;
+        padding: 5px;
         margin-bottom: 10px;
         h3 {
           @include text($text-2xl, $text-regular, $text-c1-light);

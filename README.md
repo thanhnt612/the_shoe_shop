@@ -5,6 +5,6 @@
 
 # II. Work list:
 
-    1. Trị : Detail page, Cart page, Login page and Responsive 
-    2. Thành : Home page, Register page, Search page, Profile page and Responsive
+    1. Trị : Detail page, Cart page, Login page and responsive 
+    2. Thành : Home page, Register page, Search page, Profile page and Responsive Mobile and all pages
 

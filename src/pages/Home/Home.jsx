@@ -43,14 +43,14 @@ export default function Home() {
       </div>
       <div className="product">
         <div className="container">
-          <div className="col-5 tittle">
+          <div className="col-5 tittle rounded">
             <h3>Product Feature</h3>
           </div>
           <div className="row">
             {arrProduct.map((proD, index) => {
               return (
                 <div className="col-lg-4 col-md-6" key={index}>
-                  <div className="item">
+                  <div className="item ">
                     <div className="thumbnail">
                       <div className="heart">
                         <i className="fa-regular fa-heart" />
@@ -66,7 +66,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="price">
-                    <div className="col-6 buy">
+                    <div className="col-6 buy ">
                     <NavLink to={`/detail/${proD.id}`}>
                     <button className="btn">Buy now</button>
                     </NavLink>

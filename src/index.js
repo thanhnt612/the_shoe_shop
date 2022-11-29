@@ -13,9 +13,11 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Login_Mobile from "./pages/Login/Login_Mobile";
 import Register from "./pages/Register/Register";
-import Register_Mobile from "./pages/Register/Register_Mobile.jsx";
+import Register_Mobile from "./pages/Register/Register_Mobile";
 import Cart from "./pages/Cart/Cart";
+import Cart_Mobile from "./pages/Cart/Cart_Mobile";
 import Profile from "./pages/Profile/Profile";
+import Profile_Mobile from "./pages/Profile/Profile_Mobile";
 import Detail from "./pages/Detail/Detail";
 import Detail_Mobile from "./pages/Detail/Detail_Mobile";
 import "./index.scss";
@@ -65,8 +67,19 @@ root.render(
               />
             }
           ></Route>
-          <Route path="cart" element={<Cart />}></Route>
-          <Route path="profile" element={<Profile />}></Route>
+          <Route path="cart" element={<ResponsiveItem
+                component={Cart}
+                mobileComponent={Cart_Mobile}
+              />}></Route>
+          <Route
+            path="profile"
+            element={
+              <ResponsiveItem
+                component={Profile}
+                mobileComponent={Profile_Mobile}
+              />
+            }
+          ></Route>
           <Route
             path="detail"
             element={

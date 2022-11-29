@@ -103,7 +103,7 @@
         font-weight: $text-regular;
         text-align: left;
         padding: 5px;
-        @media only screen and (max-width: 768px) {
+        @include responsive("md") {
           font-size: $text-2xl;
         }
       }
@@ -167,9 +167,9 @@
             align-items: center;
             justify-content: center;
             background-color: $bg-c1-price;
-
             .buy {
               .btn {
+                border-radius: 0;
                 @include button(
                   $text-xl,
                   $text-regular,
@@ -179,6 +179,15 @@
                 );
 
                 @include responsive("md") {
+                  @include button(
+                    $text-xl,
+                    $text-regular,
+                    $text-c1-dark,
+                    $bg-c1-button,
+                    5px 15px
+                  );
+                }
+                @include responsive("lg") {
                   @include button(
                     $text-2xl1,
                     $text-regular,

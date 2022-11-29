@@ -9,31 +9,45 @@ export default function HeaderHome() {
   const renderLogin = () => {
     if (userProfile.name) {
       return (
-        <>
-          <NavLink className="nav-link bg-secondary rounded p-1" to="/profile">
-            Hello <i class="fa-solid fa-hand"></i> ! {userProfile.name}
-          </NavLink>
-          <button
-            className="nav-link text-white mx-2 bg-secondary rounded p-1"
-            style={{ background: "none", border: "none" }}
-            onClick={() => {
-              settings.eraseCookie(ACCESSTOKEN, 0);
-              localStorage.removeItem(USER_PROFILE);
-              localStorage.removeItem(ACCESSTOKEN);
-              window.location.href = "/";
-            }}
-          >
-            Đăng xuất <i class="fa-solid fa-circle-xmark"></i>
-          </button>
-        </>
+        <div className="row align-items-center">
+          <div className="col-sm-7 col-lg-7">
+            <NavLink
+              className="nav-link text-center bg-secondary rounded p-1"
+              to="/profile"
+            >
+              Hi!! <i class="fa-solid fa-hand"></i> {userProfile.name}
+            </NavLink>
+          </div>
+          <div className="col-sm-5 col-lg-5">
+            <NavLink
+              className="nav-link text-center text-white mx-2 bg-secondary rounded p-1"
+              style={{ background: "none", border: "none" }}
+              onClick={() => {
+                settings.eraseCookie(ACCESSTOKEN, 0);
+                localStorage.removeItem(USER_PROFILE);
+                localStorage.removeItem(ACCESSTOKEN);
+                window.location.href = "/login";
+              }}
+            >
+              Đăng xuất<i class="fa-solid fa-circle-xmark"></i>
+            </NavLink>
+          </div>
+        </div>
       );
     }
     return (
       <>
-        <NavLink className="nav-link bg-secondary rounded p-1" to="/login">
+        <NavLink
+          className="nav-link text-center bg-secondary rounded mb-2 p-1"
+          to="/login"
+        >
           Login
         </NavLink>
-        <NavLink className="nav-link bg-secondary rounded p-1" to="/register">
+
+        <NavLink
+          className="nav-link text-center bg-secondary rounded p-1"
+          to="/register"
+        >
           Register
         </NavLink>
       </>
@@ -49,29 +63,32 @@ export default function HeaderHome() {
           </NavLink>
         </div>
         <div className="header-right">
-          <div>
-            <NavLink to="/search">
-              <i className="text-light me-2 fa-solid fa-search" />
-            </NavLink>
-            <NavLink to="/search">
-              <span>Search</span>
-            </NavLink>
+          <div className="row">
+            <div className="cart">
+              <div className="col-6 add-cart border rounded my-2">
+                <NavLink
+                  style={{ textDecoration: "none" }}
+                  className="nav-item text-light"
+                  to={"cart"}
+                >
+                  <i className="fa fa-cart-plus"></i>({cart.length})-
+                  {cart
+                    .reduce((tt, itemCart, index) => {
+                      return (tt += itemCart.quantity * itemCart.price);
+                    }, 0)
+                    .toLocaleString()}
+                  $
+                </NavLink>
+              </div>
+              <div className="col-6 search border text-center rounded">
+                <NavLink to="/search">
+                  <i className="text-light me-2 fa-solid fa-search" />
+                  <span>Search</span>
+                </NavLink>
+              </div>
+            </div>
+            <div className="info-login py-3">{renderLogin()}</div>
           </div>
-
-          <NavLink
-            style={{ textDecoration: "none" }}
-            className="nav-item text-light px-5"
-            to={"cart"}
-          >
-            <i className="fa fa-cart-plus"></i> ({cart.length}) -{" "}
-            {cart
-              .reduce((tt, itemCart, index) => {
-                return (tt += itemCart.quantity * itemCart.price);
-              }, 0)
-              .toLocaleString()}
-            $
-          </NavLink>
-          {renderLogin()}
         </div>
       </div>
       <nav className="navbar navbar-expand-sm navbar-light bg-white">

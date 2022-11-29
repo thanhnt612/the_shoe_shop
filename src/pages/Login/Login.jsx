@@ -55,11 +55,13 @@ export default function Login() {
             onChange={frm.handleChange}
           />
         </div>
-        <div className="form-group registerGroup">
-          <NavLink to={"/register"}>Register now ?</NavLink>
+        <div className="form-group register-form text-end">
           <button className="btn btn-success" type="submit">
             Login
           </button>
+          <div>
+            <NavLink to={"/register"}>Register now ?</NavLink>
+          </div>
         </div>
         {/* <LoginFacebook /> */}
       </div>

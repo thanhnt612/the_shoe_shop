@@ -85,12 +85,12 @@ export default function HeaderHome() {
             </div>
           </div>
         </div>
-      </div>
       <div className="search-product rounded border border-info bg-light text-dark text-start my-3 p-2">
         <NavLink to="/search">
           <i className="text-dark me-2 fa-solid fa-search" />
           <span className="text-dark">Search</span>
         </NavLink>
+      </div>
       </div>
     </header>
   );

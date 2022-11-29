@@ -29,7 +29,6 @@ export default function Cart() {
             <th>Quantity</th>
             <th>Total</th>
             <th>Action</th>
-            <th></th>
           </tr>
         </thead>
         {cart.map((item, index) => {
@@ -77,37 +76,36 @@ export default function Cart() {
                 </td>
                 <td>{item.quantity * item.price}$</td>
                 <td>
-                  <div className="btnGroup d-flex justify-content-center">
+                  <div className="d-flex align-items-center justify-content-center flex-column">
                     <button
-                      className="btn btn-danger btnDelete"
+                      className="btn btn-danger btnDelete mb-2"
                       onClick={() => {
                         //Xóa đơn hàng
                         const action = deleteProductAction(item.id);
                         dispatch(action);
                       }}
                     >
-                      DELETE
+                      DELETE <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+
+                    <button
+                      className="btn btn-warning btnSubmitCart"
+                      onClick={() => {
+                        //Thêm chức năng đặt hàng
+                        const action = orderProductApi(
+                          item.id,
+                          item.quantity,
+                          userProfile.email
+                        );
+                        dispatch(action);
+                        //Đặt hàng xong thì xóa đi
+                        const actionDel = deleteProductAction(item.id);
+                        dispatch(actionDel);
+                      }}
+                    >
+                      ORDER
                     </button>
                   </div>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-warning btnSubmitCart"
-                    onClick={() => {
-                      //Thêm chức năng đặt hàng
-                      const action = orderProductApi(
-                        item.id,
-                        item.quantity,
-                        userProfile.email
-                      );
-                      dispatch(action);
-                      //Đặt hàng xong thì xóa đi
-                      const actionDel = deleteProductAction(item.id);
-                      dispatch(actionDel);
-                    }}
-                  >
-                    SUBMIT ORDER
-                  </button>
                 </td>
               </tr>
             </tbody>

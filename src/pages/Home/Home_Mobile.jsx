@@ -14,11 +14,11 @@ export default function Home_Mobile() {
   return (
     <div className="home-page-mobile">
       <div className="container">
-        <h3 className="tittle">Product list</h3>
+        <h3 className="tittle rounded">Product list</h3>
         <div className="product-list">
           {arrProduct.map((prod, index) => {
             return (
-              <div className="d-flex mt-2 align-items-center " key={index}>
+              <div className="d-flex mt-2 align-items-center" key={index}>
                 <div className="row">
                   <div
                     className="bg-info bg-opacity-25 col-4"

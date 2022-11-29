@@ -52,7 +52,7 @@ export default function Search() {
           <button className="btn">SEARCH</button>
         </form>
         <div className="result">
-          <div className="tittle">
+          <div className="tittle rounded">
             <h3>Search result</h3>
           </div>
           <div className="list">

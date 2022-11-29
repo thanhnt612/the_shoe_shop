@@ -46,7 +46,7 @@ export default function Profile() {
   });
   return (
     <div className="profile-page">
-      <div className="my-3 col-6 title">
+      <div className="my-3 col-6 title rounded">
         <h3>Profile</h3>
       </div>
       <div className="row">

@@ -31,10 +31,10 @@
     .result {
       .tittle {
         background: $bg-title;
-        padding: 12px;
+        padding: 10px;
         margin-bottom: 10px;
         h3 {
-          @include text($text-4xl, $text-regular, $text-c1-light);
+          @include text($text-3xl, $text-regular, $text-c1-light);
         }
       }
       .list {

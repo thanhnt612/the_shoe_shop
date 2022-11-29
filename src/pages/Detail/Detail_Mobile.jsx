@@ -76,7 +76,7 @@ export default function Detail() {
       </div>
 
       <div className="container mb-5 productRelated">
-        <h3 className="tittle m-3 text-center">- Related Products -</h3>
+        <h3 className="tittle rounded m-3 text-center">- Related Products -</h3>
         <div className="row">
           {productDetail.relatedProducts?.map((prod, index) => {
             return (

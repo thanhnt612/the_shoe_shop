@@ -1,0 +1,53 @@
+.cart-mobile {
+  text-align: right;
+  h3 {
+    text-align: left;
+  }
+  .table {
+    thead {
+      background-color: $bg-c1-cart;
+      tr {
+        text-align: center;
+        th {
+          font-size: $text-xs;
+          border: 1px solid $bg-c1-cart;
+        }
+      }
+    }
+    tbody {
+      tr {
+        text-align: center;
+        td {
+          border: 1px solid $bg-c1-cart;
+          font-size: $text-xs;
+          img {
+          }
+          span {
+            background-color: $bg-c1-cart;
+          }
+          .btnQuantity {
+            font-size: $text-xs;
+            background-color: $bg-c1-loginButton;
+            padding: 3px 10px;
+            border-radius: 30%;
+            &:hover {
+              &:hover {
+                background-color: $bg-hover-button-cart;
+                transition: 0.6s;
+              }
+            }
+          }
+
+          .btnDelete {
+            font-size: $text-xs;
+            padding: 5px 10px;
+            transition: 0.6s;
+          }
+          .btnSubmitCart {
+            @extend .btnDelete;
+          }
+        }
+      }
+    }
+  }
+}
