@@ -38,18 +38,18 @@ export default function Search() {
     });
   };
   return (
-    <div className="search-page">
+    <div className="search-page-mobile">
       <div className="container">
         <h4>Search</h4>
         <form className="form-group" onSubmit={handleSubmit}>
           <input
-            className="form-control"
+            className="form-control w-100"
             type="text"
             id="keywordRef"
             onChange={handleChange}
             placeholder="product name . . ."
           />
-          <button className="btn">SEARCH</button>
+          <button className="btn">Search</button>
         </form>
         <div className="result">
           <div className="tittle">
@@ -71,34 +71,33 @@ export default function Search() {
               {searchProduct.map((prod, index) => {
                 return (
                   <div className="d-flex mt-2 align-items-center " key={index}>
-                    <div
-                      className="bg-info bg-opacity-25"
-                      style={{ width: "52%", height: "100%" }}
-                    >
-                      <img
-                        src={prod.image}
-                        className="w-100 h-100"
-                        style={{ objectFit: "cover" }}
-                        alt="..."
-                      />
-                    </div>
-                    <div className="content bg-secondary bg-opacity-25 p-2">
-                      <h6>{prod.name}</h6>
-                      <p>
-                        {prod.description.length > 75
-                          ? prod.description.substr(0, 75) + "..."
-                          : prod.description}
-                      </p>
-                      <div className="w-100 text-right d-flex align-items-center">
-                        <NavLink
-                          className="btn btn-dark"
-                          to={`/detail/${prod.id}`}
-                        >
-                          View detail
-                        </NavLink>
-                        <button className="ms-2 p-2 bg-warning border border-secondary rounded">
-                          {prod.price}$
-                        </button>
+                    <div className="row">
+                      <div className="bg-info bg-opacity-25 col-4">
+                        <img
+                          src={prod.image}
+                          className="w-100"
+                          style={{ objectFit: "cover" }}
+                          alt="..."
+                        />
+                      </div>
+                      <div className="content bg-secondary bg-opacity-25 p-2 col-8">
+                        <h6>{prod.name}</h6>
+                        <p>
+                          {prod.description.length > 75
+                            ? prod.description.substr(0, 75) + "..."
+                            : prod.description}
+                        </p>
+                        <div className="w-100 text-right d-flex align-items-center">
+                          <NavLink
+                            className="btn btn-dark"
+                            to={`/detail/${prod.id}`}
+                          >
+                            View detail
+                          </NavLink>
+                          <button className="ms-2 p-2 bg-warning border border-secondary rounded">
+                            {prod.price}$
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

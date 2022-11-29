@@ -27,12 +27,16 @@ export default function HeaderHome() {
           </button>
         </>
       );
-      // >>>>>>> 3b78b72a46d6a7611cc7dd0313ce87bb306bc07b
     }
     return (
-      <NavLink className="nav-link bg-secondary rounded p-1" to="/login">
-        Login
-      </NavLink>
+      <>
+        <NavLink className="nav-link bg-secondary rounded p-1" to="/login">
+          Login
+        </NavLink>
+        <NavLink className="nav-link bg-secondary rounded p-1" to="/register">
+          Register
+        </NavLink>
+      </>
     );
   };
 
@@ -68,9 +72,6 @@ export default function HeaderHome() {
             $
           </NavLink>
           {renderLogin()}
-          <NavLink className="nav-link bg-secondary rounded p-1" to="/register">
-            Register
-          </NavLink>
         </div>
       </div>
       <nav className="navbar navbar-expand-sm navbar-light bg-white">

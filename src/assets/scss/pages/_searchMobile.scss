@@ -1,0 +1,41 @@
+.search-page-mobile {
+  font-family: "Roboto", sans-serif;
+  padding-top: 30px;
+  .container {
+    h4 {
+      @include text($text-xs, $text-semiBold, $text-c1-grey);
+    }
+    .form-group {
+      padding-bottom: 20px;
+      display: flex;
+      flex-direction: row;
+      input {
+        margin-right: 30px;
+        font-size: $text-base;
+        padding: 10px;
+        background: rgba(33, 33, 33, 0.08);
+        border-radius: 4px 4px 0px 0px;
+      }
+      .btn {
+        @include button(
+          $text-xs,
+          $text-regular,
+          $text-c1-light,
+          $bg-button-search,
+          15px 30px
+        );
+        border-radius: 50px;
+      }
+    }
+    .result {
+      .tittle {
+        background: $bg-title;
+        padding: 12px;
+        margin-bottom: 10px;
+        h3 {
+          @include text($text-2xl, $text-regular, $text-c1-light);
+        }
+      }
+    }
+  }
+}

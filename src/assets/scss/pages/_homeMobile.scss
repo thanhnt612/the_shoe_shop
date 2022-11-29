@@ -1,0 +1,15 @@
+.home-page-mobile {
+  .container {
+    .tittle {
+      background: $bg-title;
+      color: $text-c1-light;
+      font-size: $text-4xl;
+      font-weight: $text-regular;
+      text-align: left;
+      padding: 5px;
+      @media only screen and (max-width: 768px) {
+        font-size: $text-2xl;
+      }
+    }
+  }
+}

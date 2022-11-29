@@ -11,7 +11,9 @@ import { store } from "./redux/configStore";
 import HomeTemplates from "./templates/HomeTemplates";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
+import Login_Mobile from "./pages/Login/Login_Mobile";
 import Register from "./pages/Register/Register";
+import Register_Mobile from "./pages/Register/Register_Mobile.jsx";
 import Cart from "./pages/Cart/Cart";
 import Profile from "./pages/Profile/Profile";
 import Detail from "./pages/Detail/Detail";
@@ -45,8 +47,24 @@ root.render(
               />
             }
           ></Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="register" element={<Register />}></Route>
+          <Route
+            path="login"
+            element={
+              <ResponsiveItem
+                component={Login}
+                mobileComponent={Login_Mobile}
+              />
+            }
+          ></Route>
+          <Route
+            path="register"
+            element={
+              <ResponsiveItem
+                component={Register}
+                mobileComponent={Register_Mobile}
+              />
+            }
+          ></Route>
           <Route path="cart" element={<Cart />}></Route>
           <Route path="profile" element={<Profile />}></Route>
           <Route

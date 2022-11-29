@@ -4,14 +4,20 @@
 @import "./assets/scss/themes/base";
 /*------------------Component--------------------*/
 @import "./assets/scss/components/HeaderHome";
+@import "./assets/scss/components/_HeaderHomeMoible";
 @import "./assets/scss/components/FooterHome";
 /*-----------------Templates---------------------*/
 @import "./assets/scss/templates/HomeTemplate";
 /*------------------Pages--------------------*/
 @import "./assets/scss/pages/home";
+@import "./assets/scss/pages/homeMobile";
 @import "./assets/scss/pages/cart";
 @import "./assets/scss/pages/detail";
+@import "./assets/scss/pages/detailMobile";
 @import "./assets/scss/pages/login";
+@import "./assets/scss/pages/loginMobile";
 @import "./assets/scss/pages/profile";
 @import "./assets/scss/pages/register";
+@import "./assets/scss/pages/registerMobile";
 @import "./assets/scss/pages/search";
+@import "./assets/scss/pages/searchMobile";
