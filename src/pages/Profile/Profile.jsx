@@ -39,7 +39,7 @@ export default function Profile() {
       } else {
         update.gender = false;
       }
-      //Gửi thông tin cập nhật sau khi submit 
+      //Gửi thông tin cập nhật sau khi submit
       const action = updateProfileApi(update);
       dispatch(action);
     },
@@ -164,7 +164,7 @@ export default function Profile() {
         <div className="title-order d-flex my-3">
           <h3>Order History</h3>
         </div>
-        {userProfile.ordersHistory.map((info, index) => {
+        {userProfile.ordersHistory?.map((info, index) => {
           return (
             <>
               <div className="buying-history my-3">
